@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:midterm_flutter/model/user.dart';
+import '../model/user.dart';
 
 class LoyaltyCard extends StatelessWidget {
   const LoyaltyCard({

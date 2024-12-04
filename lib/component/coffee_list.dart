@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_flutter/component/coffee_card.dart';
-import 'package:midterm_flutter/model/coffee.dart';
+import '../component/coffee_card.dart';
+import '../model/coffee.dart';
 
 import '../screen/detail.dart';
 

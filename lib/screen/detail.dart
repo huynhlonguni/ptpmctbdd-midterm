@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:midterm_flutter/component/custom_app_bar.dart';
-import 'package:midterm_flutter/component/seperator.dart';
+import 'package:provider/provider.dart';
+import '../component/custom_app_bar.dart';
+import '../component/seperator.dart';
+import '../model/cart.dart';
 import '../model/coffee.dart';
+import '../model/order.dart';
 import '../screen/cart.dart';
 
 class Detail extends StatefulWidget {
@@ -14,18 +17,17 @@ class Detail extends StatefulWidget {
   State<Detail> createState() => _DetailState();
 }
 
-
 class _DetailState extends State<Detail> {
   int quantity = 1;
   String shot = "Single";
   String temperature = "Hot";
   String size = "Medium";
-  String iceAmount = "Medium";
+  String ice = "Normal Ice";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: const CustomAppBar(title: "Details"),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
         child: Column(
@@ -203,34 +205,41 @@ class _DetailState extends State<Detail> {
                         ],
                       ),
                       const Seperator(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Ice",
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.onSurface,
-                                fontSize: Theme.of(context)
-                                    .textTheme
-                                    .titleSmall
-                                    ?.fontSize),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.end,
+                      Builder(builder: (context) {
+                        if (temperature == "Iced") {
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              _buildIconOption(iceAmount, "Small",
-                                  "assets/svgs/IceSmall.svg", 14),
-                              const SizedBox(width: 26),
-                              _buildIconOption(iceAmount, "Medium",
-                                  "assets/svgs/IceMedium.svg", 20),
-                              const SizedBox(width: 26),
-                              _buildIconOption(iceAmount, "Large",
-                                  "assets/svgs/IceLarge.svg", 30),
+                              Text(
+                                "Ice",
+                                style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.onSurface,
+                                    fontSize: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall
+                                        ?.fontSize),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  _buildIconOption(ice, "Little Ice",
+                                      "assets/svgs/IceSmall.svg", 14),
+                                  const SizedBox(width: 26),
+                                  _buildIconOption(ice, "Normal Ice",
+                                      "assets/svgs/IceMedium.svg", 20),
+                                  const SizedBox(width: 26),
+                                  _buildIconOption(ice, "Full Ice",
+                                      "assets/svgs/IceLarge.svg", 30),
+                                ],
+                              ),
                             ],
-                          ),
-                        ],
-                      ),
+                          );
+                        } else {
+                          return Container();
+                        }
+                      }),
                     ],
                   ),
                 ),
@@ -273,6 +282,16 @@ class _DetailState extends State<Detail> {
                       style: TextButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 20)),
                       onPressed: () {
+                        final order = Order(
+                            coffee: widget.coffee,
+                            quantity: quantity,
+                            shot: shot,
+                            temperature: temperature,
+                            size: size,
+                            ice: ice,
+                            price: quantity * widget.coffee.price);
+                        Provider.of<CartModel>(context, listen: false)
+                            .addItem(order);
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => const Cart()),
@@ -329,11 +348,14 @@ class _DetailState extends State<Detail> {
         setState(() {
           if (label == "Hot" || label == "Iced") {
             temperature = label;
+            if (temperature == "Hot") {
+              ice = "No Ice";
+            }
           } else if (label == "Small" ||
               label == "Medium" ||
               label == "Large") {
             if (iconPath.contains("Ice")) {
-              iceAmount = label;
+              ice = label;
             } else {
               size = label;
             }

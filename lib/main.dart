@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_flutter/screen/detail.dart';
 import 'package:provider/provider.dart';
 import 'tabs.dart';
 import 'model/user.dart';
 import 'model/coffee.dart';
+import 'model/cart.dart';
 import 'screen/home.dart';
+import 'screen/detail.dart';
 import 'state/tab_manager.dart';
 
 void main() {
@@ -14,6 +15,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => UserModel()),
         ChangeNotifierProvider(create: (_) => CoffeeModel()),
         ChangeNotifierProvider(create: (_) => TabManager()),
+        ChangeNotifierProvider(create: (_) => CartModel()),
       ],
       child: const MyApp(),
     ),
@@ -48,13 +50,11 @@ class MyApp extends StatelessWidget {
             headlineSmall: TextStyle(fontSize: 22)),
         shadowColor: Colors.black.withOpacity(0.12),
       ),
-      home: Tabs(
+      home: const Tabs(
         screens: [
-          Detail(
-              coffee: Coffee(
-                  name: "Americano", image: "assets/images/Americano.png", price: 3.00)),
-          const Home(),
-          const Home(),
+          Home(),
+          Home(),
+          Home(),
         ],
       ),
     );

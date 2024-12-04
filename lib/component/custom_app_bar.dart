@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:midterm_flutter/screen/cart.dart';
+import '../screen/cart.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
+  final String title;
   final bool disableBackButton;
   final bool disableCartButton;
 
   const CustomAppBar({
     super.key,
+    required this.title,
     this.height = kToolbarHeight,
     this.disableBackButton = false,
     this.disableCartButton = false,
@@ -44,7 +46,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Expanded(
               child: Center(
                 child: Text(
-                  "Details",
+                  title,
                   style: TextStyle(
                     fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
                     color: Theme.of(context).colorScheme.onSurface,
