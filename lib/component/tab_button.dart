@@ -22,7 +22,7 @@ class TabButton extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       onTap: onPressed, // Call the passed-in function when pressed
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+        padding: const EdgeInsets.symmetric(vertical: 20.0),
         child: ColorFiltered(
           colorFilter: ColorFilter.mode(
             isActive ? activeColor : inactiveColor,

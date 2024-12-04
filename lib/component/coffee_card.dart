@@ -23,16 +23,15 @@ class CoffeeCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(coffee.image, height: 80),
+            Hero(
+                tag: coffee.image,
+                child: Image.asset(coffee.image, height: 80)),
             const SizedBox(height: 12),
             Text(
               coffee.name,
               style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
-                  fontSize: Theme.of(context)
-                      .textTheme
-                      .titleMedium
-                      ?.fontSize),
+                  fontSize: Theme.of(context).textTheme.titleMedium?.fontSize),
             ),
           ],
         ),

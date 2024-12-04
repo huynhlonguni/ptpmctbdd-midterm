@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:midterm_flutter/component/coffee_card.dart';
 import 'package:midterm_flutter/model/coffee.dart';
 
+import '../screen/detail.dart';
+
 class CoffeeList extends StatelessWidget {
   const CoffeeList({
     super.key,
@@ -45,7 +47,14 @@ class CoffeeList extends StatelessWidget {
                   final coffee = coffeeModel.coffees[index];
                   return CoffeeCard(
                     coffee: coffee,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Detail(coffee: coffee), // Pass the selected coffee
+                        ),
+                      );
+                    },
                   );
                 },
               ),

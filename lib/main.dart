@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:midterm_flutter/screen/detail.dart';
 import 'package:provider/provider.dart';
 import 'tabs.dart';
 import 'model/user.dart';
@@ -37,21 +38,23 @@ class MyApp extends StatelessWidget {
           onError: Color(0xFFFF3030), // Default on error color
           surface: Colors.white, // Surface color
           onSurface: Color(0xFF001833), // On surface text color
+          outline: Color(0xFFEFEFEF),
           brightness: Brightness.light, // Brightness of the theme
         ),
         textTheme: const TextTheme(
-          titleSmall: TextStyle(fontSize: 14),
-          titleMedium: TextStyle(fontSize: 16),
-          titleLarge: TextStyle(fontSize: 18),
-          headlineSmall: TextStyle(fontSize: 22)
-        ),
+            titleSmall: TextStyle(fontSize: 14),
+            titleMedium: TextStyle(fontSize: 16),
+            titleLarge: TextStyle(fontSize: 18),
+            headlineSmall: TextStyle(fontSize: 22)),
         shadowColor: Colors.black.withOpacity(0.12),
       ),
-      home: const Tabs(
+      home: Tabs(
         screens: [
-          Home(),
-          Home(),
-          Home(),
+          Detail(
+              coffee: Coffee(
+                  name: "Americano", image: "assets/images/Americano.png", price: 3.00)),
+          const Home(),
+          const Home(),
         ],
       ),
     );
