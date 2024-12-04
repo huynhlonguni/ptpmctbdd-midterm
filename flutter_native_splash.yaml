@@ -119,7 +119,7 @@ flutter_native_splash:
   # https://developer.android.com/reference/android/view/Gravity): bottom, center,
   # center_horizontal, center_vertical, clip_horizontal, clip_vertical, end, fill, fill_horizontal,
   # fill_vertical, left, right, start, or top.
-  #android_gravity: center
+  android_gravity: fill
   #
   # ios_content_mode can be one of the following iOS UIView.ContentMode (see
   # https://developer.apple.com/documentation/uikit/uiview/contentmode): scaleToFill,
@@ -128,7 +128,7 @@ flutter_native_splash:
   #ios_content_mode: center
   #
   # web_image_mode can be one of the following modes: center, contain, stretch, and cover.
-  #web_image_mode: center
+  web_image_mode: cover
 
   # The screen orientation can be set in Android with the android_screen_orientation parameter.
   # Valid parameters can be found here:

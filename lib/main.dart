@@ -5,7 +5,6 @@ import 'model/user.dart';
 import 'model/coffee.dart';
 import 'model/cart.dart';
 import 'screen/home.dart';
-import 'screen/detail.dart';
 import 'state/tab_manager.dart';
 
 void main() {
