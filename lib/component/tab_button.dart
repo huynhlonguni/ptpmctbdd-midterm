@@ -19,13 +19,17 @@ class TabButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: onPressed, // Call the passed-in function when pressed
-      child: ColorFiltered(
-        colorFilter: ColorFilter.mode(
-          isActive ? activeColor : inactiveColor,
-          BlendMode.srcIn, // Apply the color filter to the icon
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+        child: ColorFiltered(
+          colorFilter: ColorFilter.mode(
+            isActive ? activeColor : inactiveColor,
+            BlendMode.srcIn, // Apply the color filter to the icon
+          ),
+          child: child, // The child widget is the icon
         ),
-        child: child, // The child widget is the icon
       ),
     );
   }

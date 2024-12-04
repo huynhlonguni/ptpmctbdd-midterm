@@ -31,7 +31,7 @@ class HomeHeader extends StatelessWidget {
             Text(
               user.username,
               style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Theme.of(context).colorScheme.onSurface,
                   fontSize: Theme.of(context)
                       .textTheme
                       .titleLarge

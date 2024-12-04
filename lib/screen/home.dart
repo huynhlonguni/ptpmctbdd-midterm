@@ -15,23 +15,31 @@ class Home extends StatelessWidget {
     final coffeeModel = Provider.of<CoffeeModel>(context);
 
     return SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  HomeHeader(user: user),
-                  const SizedBox(height: 20),
-                  LoyaltyCard(user: user),
-                ],
-              ),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                HomeHeader(user: user),
+                const SizedBox(height: 20),
+                LoyaltyCard(user: user),
+              ],
             ),
-            const SizedBox(height: 20),
-            CoffeeList(coffeeModel: coffeeModel),
-          ],
-        ),
+          ),
+          const SizedBox(height: 20),
+          CoffeeList(coffeeModel: coffeeModel),
+          SizedBox(
+            height: 104,
+            child: Container(
+              color: Theme.of(context)
+                  .colorScheme
+                  .primary, // Set your desired color here
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

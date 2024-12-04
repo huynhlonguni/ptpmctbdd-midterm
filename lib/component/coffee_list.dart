@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:midterm_flutter/component/coffee_card.dart';
 import 'package:midterm_flutter/model/coffee.dart';
 
 class CoffeeList extends StatelessWidget {
@@ -42,32 +43,13 @@ class CoffeeList extends StatelessWidget {
                 itemCount: coffeeModel.coffees.length,
                 itemBuilder: (context, index) {
                   final coffee = coffeeModel.coffees[index];
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surface,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(coffee.image, height: 80),
-                        const SizedBox(height: 12),
-                        Text(
-                          coffee.name,
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSurface,
-                              fontSize: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.fontSize),
-                        ),
-                      ],
-                    ),
+                  return CoffeeCard(
+                    coffee: coffee,
+                    onPressed: () {},
                   );
                 },
               ),
             ),
-            const SizedBox(height: 104),
           ],
         ),
       ),
