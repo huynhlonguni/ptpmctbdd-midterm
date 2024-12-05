@@ -2,14 +2,41 @@ import 'package:flutter/material.dart';
 
 class UserModel extends ChangeNotifier {
   String username = "Anderson";
-  int loyaltyProgress = 4;
+  int loyaltyProgress = 1;
   int loyaltyTotal = 8;
+  int points = 2000;
   String phone = "0123465789";
   String email = "user@example.com";
   String address = "Home";
 
   void updateUsername(String username) {
     this.username = username;
+    notifyListeners();
+  }
+
+  void getLoyalty(int amount) {
+    loyaltyProgress += amount;
+    if (loyaltyProgress > loyaltyTotal) {
+      loyaltyProgress = loyaltyTotal;
+    }
+    notifyListeners();
+  }
+
+  void redeemLoyalty() {
+    loyaltyProgress = 0;
+    notifyListeners();
+  }
+
+  void getPoint(int points) {
+    this.points += points;
+    notifyListeners();
+  }
+
+  void redeemPoint(int points) {
+    if (this.points < points) {
+      return;
+    }
+    this.points -= points;
     notifyListeners();
   }
 

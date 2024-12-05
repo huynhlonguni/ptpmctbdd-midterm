@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'screen/my_order.dart';
 import 'tabs.dart';
 import 'model/user.dart';
 import 'model/coffee.dart';
 import 'model/history.dart';
 import 'model/cart.dart';
 import 'screen/home.dart';
+import 'screen/reward.dart';
+import 'screen/my_order.dart';
 import 'state/tab_manager.dart';
 
 void main() {
@@ -58,8 +59,8 @@ class MyApp extends StatelessWidget {
       home: const Tabs(
         screens: [
           Home(),
+          Reward(),
           MyOrder(),
-          Home(),
         ],
       ),
     );

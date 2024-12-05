@@ -24,7 +24,7 @@ class Home extends StatelessWidget {
               children: [
                 HomeHeader(user: user),
                 const SizedBox(height: 20),
-                LoyaltyCard(user: user),
+                const LoyaltyCard(),
               ],
             ),
           ),

@@ -5,6 +5,7 @@ import '../component/order_cart_card.dart';
 import '../component/svg.dart';
 import '../component/custom_app_bar.dart';
 import '../model/history.dart';
+import '../model/user.dart';
 import '../screen/order_success.dart';
 import '../model/cart.dart';
 
@@ -13,6 +14,7 @@ class Cart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserModel>(context);
     final cart = Provider.of<CartModel>(context);
     final history = Provider.of<HistoryModel>(context);
     final double total = cart.items.fold(0, (sum, item) => sum + item.price);
@@ -113,9 +115,15 @@ class Cart extends StatelessWidget {
                             style: TextButton.styleFrom(
                                 padding: const EdgeInsets.all(0)),
                             onPressed: () {
+                              int cupCount = 0;
+                              int ptsAmount = 0;
                               for (var item in cart.items) {
+                                cupCount += item.quantity;
+                                ptsAmount += item.price.toInt();
                                 history.addItem(item);
                               }
+                              user.getLoyalty(cupCount);
+                              user.getPoint(ptsAmount);
                               cart.removeAll();
                               Navigator.push(
                                 context,
