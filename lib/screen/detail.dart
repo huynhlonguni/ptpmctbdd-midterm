@@ -22,7 +22,7 @@ class _DetailState extends State<Detail> {
   String shot = "Single";
   String temperature = "Hot";
   String size = "Medium";
-  String ice = "Normal Ice";
+  String ice = "No Ice";
 
   @override
   Widget build(BuildContext context) {
@@ -351,14 +351,17 @@ class _DetailState extends State<Detail> {
             if (temperature == "Hot") {
               ice = "No Ice";
             }
+            else {
+              ice = "Normal Ice";
+            }
           } else if (label == "Small" ||
               label == "Medium" ||
               label == "Large") {
-            if (iconPath.contains("Ice")) {
-              ice = label;
-            } else {
-              size = label;
-            }
+            size = label;
+          } else if (label == "Little Ice" ||
+              label == "Normal Ice" ||
+              label == "Full Ice") {
+            ice = label;
           }
         });
       },

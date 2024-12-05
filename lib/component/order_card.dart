@@ -37,7 +37,7 @@ class OrderCard extends StatelessWidget {
                                   .titleMedium
                                   ?.fontSize)),
                       Text(
-                          '${order.shot.toLowerCase()} | ${order.temperature.toLowerCase()} | ${order.size.toLowerCase()} | ${order.shot.toLowerCase()}',
+                          '${order.shot.toLowerCase()} | ${order.temperature.toLowerCase()} | ${order.size.toLowerCase()}${order.temperature.toLowerCase() == 'hot' ? '' : ' | ${order.ice.toLowerCase()}'}',
                           style: TextStyle(
                               color: Theme.of(context).colorScheme.onSecondary,
                               fontSize: Theme.of(context)

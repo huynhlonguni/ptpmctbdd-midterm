@@ -10,4 +10,9 @@ class CartModel extends ChangeNotifier {
     _items.add(item);
     notifyListeners();
   }
+
+  void removeItem(int index) {
+    _items.removeAt(index);
+    notifyListeners();
+  }
 }
