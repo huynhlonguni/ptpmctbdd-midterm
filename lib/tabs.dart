@@ -41,7 +41,7 @@ class Tabs extends StatelessWidget {
                     children: [
                       Expanded(
                         child: TabButton(
-                          activeColor: Theme.of(context).colorScheme.primary,
+                          activeColor: Theme.of(context).colorScheme.onSurface,
                           inactiveColor:
                               Theme.of(context).colorScheme.onSecondary,
                           isActive: tabManager.currentTabIndex == 0,
@@ -51,7 +51,7 @@ class Tabs extends StatelessWidget {
                       ),
                       Expanded(
                         child: TabButton(
-                          activeColor: Theme.of(context).colorScheme.primary,
+                          activeColor: Theme.of(context).colorScheme.onSurface,
                           inactiveColor:
                               Theme.of(context).colorScheme.onSecondary,
                           isActive: tabManager.currentTabIndex == 1,
@@ -61,7 +61,7 @@ class Tabs extends StatelessWidget {
                       ),
                       Expanded(
                         child: TabButton(
-                          activeColor: Theme.of(context).colorScheme.primary,
+                          activeColor: Theme.of(context).colorScheme.onSurface,
                           inactiveColor:
                               Theme.of(context).colorScheme.onSecondary,
                           isActive: tabManager.currentTabIndex == 2,

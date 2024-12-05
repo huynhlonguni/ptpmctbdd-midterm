@@ -32,19 +32,21 @@ class Redeem extends StatelessWidget {
                   redeem: redeem,
                   userPoint: user.points,
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Detail(
-                                coffee: coffee,
-                                checkoutCallback: () {
-                                  if (user.points >= redeem.point) {
-                                    redeemable.useRedeem(index);
-                                    user.redeemPoint(redeem.point);
-                                  }
-                                },
-                              )),
-                    );
+                    if (user.points >= redeem.point) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Detail(
+                                  coffee: coffee,
+                                  checkoutCallback: () {
+                                    if (user.points >= redeem.point) {
+                                      redeemable.useRedeem(index);
+                                      user.redeemPoint(redeem.point);
+                                    }
+                                  },
+                                )),
+                      );
+                    }
                   },
                 );
               },

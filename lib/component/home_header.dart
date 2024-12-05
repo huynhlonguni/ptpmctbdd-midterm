@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../model/theme.dart';
 import '../model/user.dart';
 import '../screen/cart.dart';
 import '../screen/profile.dart';
@@ -14,6 +16,7 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeModel>(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -38,7 +41,14 @@ class HomeHeader extends StatelessWidget {
         Row(
           children: [
             IconButton(
-              icon: const SVG("assets/svgs/Cart.svg", size: 24),
+              icon: theme.isDarkMode ? SVG("assets/svgs/Sun.svg", size: 24, color: Theme.of(context).colorScheme.onSurface) : SVG("assets/svgs/Moon.svg", size: 24, color: Theme.of(context).colorScheme.onSurface),
+              onPressed: () {
+                theme.toggleTheme();
+              },
+            ),
+            const SizedBox(width: 8),
+            IconButton(
+              icon: SVG("assets/svgs/Cart.svg", size: 24, color: Theme.of(context).colorScheme.onSurface),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -48,7 +58,7 @@ class HomeHeader extends StatelessWidget {
             ),
             const SizedBox(width: 8),
             IconButton(
-              icon: const SVG("assets/svgs/Profile.svg", size: 24),
+              icon: SVG("assets/svgs/Profile.svg", size: 24, color: Theme.of(context).colorScheme.onSurface),
               onPressed: () {
                 Navigator.push(
                   context,
