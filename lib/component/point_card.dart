@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../model/user.dart';
+import '../screen/redeem.dart';
 
 class PointCard extends StatelessWidget {
   const PointCard({super.key, required this.user});
@@ -50,7 +51,7 @@ class PointCard extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Container(), // Pass the selected coffee
+                    builder: (context) => const Redeem(), // Pass the selected coffee
                   ),
                 );
               },

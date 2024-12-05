@@ -10,7 +10,10 @@ import '../screen/order_success.dart';
 import '../model/cart.dart';
 
 class Cart extends StatelessWidget {
-  const Cart({super.key});
+  const Cart({super.key, this.hideBackButton = false, this.checkoutCallback});
+
+  final bool hideBackButton;
+  final VoidCallback? checkoutCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class Cart extends StatelessWidget {
     final history = Provider.of<HistoryModel>(context);
     final double total = cart.items.fold(0, (sum, item) => sum + item.price);
     return Scaffold(
-        appBar: const CustomAppBar(disableCartButton: true),
+        appBar: CustomAppBar(disableCartButton: true, disableBackButton: hideBackButton,),
         body: Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
@@ -125,6 +128,9 @@ class Cart extends StatelessWidget {
                               user.getLoyalty(cupCount);
                               user.getPoint(ptsAmount);
                               cart.removeAll();
+                              if (checkoutCallback != null) {
+                                checkoutCallback!();
+                              }
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

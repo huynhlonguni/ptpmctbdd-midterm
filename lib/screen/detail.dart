@@ -11,8 +11,10 @@ import '../screen/cart.dart';
 
 class Detail extends StatefulWidget {
   final Coffee coffee;
+  final bool hideBackButton;
+  final VoidCallback? checkoutCallback;
 
-  const Detail({super.key, required this.coffee});
+  const Detail({super.key, required this.coffee, this.hideBackButton = false, this.checkoutCallback});
 
   @override
   State<Detail> createState() => _DetailState();
@@ -29,7 +31,7 @@ class _DetailState extends State<Detail> {
   Widget build(BuildContext context) {
     final user = Provider.of<UserModel>(context);
     return Scaffold(
-      appBar: const CustomAppBar(title: "Details"),
+      appBar: CustomAppBar(title: "Details", disableBackButton: widget.hideBackButton),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
         child: Column(
@@ -299,7 +301,7 @@ class _DetailState extends State<Detail> {
                             .addItem(order);
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const Cart()),
+                          MaterialPageRoute(builder: (context) => Cart(checkoutCallback: widget.checkoutCallback)),
                         );
                       },
                       child: Text(

@@ -5,6 +5,7 @@ import 'model/user.dart';
 import 'model/coffee.dart';
 import 'model/history.dart';
 import 'model/cart.dart';
+import 'model/redeemable.dart';
 import 'screen/home.dart';
 import 'screen/reward.dart';
 import 'screen/my_order.dart';
@@ -19,6 +20,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => TabManager()),
         ChangeNotifierProvider(create: (_) => CartModel()),
         ChangeNotifierProvider(create: (_) => HistoryModel()),
+        ChangeNotifierProvider(create: (_) => RedeemableModel()),
       ],
       child: const MyApp(),
     ),
