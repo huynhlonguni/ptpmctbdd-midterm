@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../model/user.dart';
 import '../screen/cart.dart';
+import '../screen/profile.dart';
 import 'svg.dart';
 
 class HomeHeader extends StatelessWidget {
@@ -51,7 +52,7 @@ class HomeHeader extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Cart()),
+                  MaterialPageRoute(builder: (context) => const Profile()),
                 );
               },
             ),

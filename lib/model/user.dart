@@ -9,6 +9,24 @@ class UserModel extends ChangeNotifier {
   String email = "user@example.com";
   String address = "Home";
 
+  void updateField(String label, String newValue) {
+    switch (label) {
+      case 'Full name':
+        username = newValue;
+        break;
+      case 'Phone number':
+        phone = newValue;
+        break;
+      case 'Email':
+        email = newValue;
+        break;
+      case 'Address':
+        address = newValue;
+        break;
+    }
+    notifyListeners(); // Notify listeners to update the UI
+  }
+
   void updateUsername(String username) {
     this.username = username;
     notifyListeners();

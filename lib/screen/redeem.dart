@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_flutter/component/redeem_card.dart';
-import 'package:midterm_flutter/screen/detail.dart';
+import '../component/redeem_card.dart';
+import '../screen/detail.dart';
 import 'package:provider/provider.dart';
 import '../component/custom_app_bar.dart';
 import '../model/redeemable.dart';
