@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import '../component/custom_app_bar.dart';
 import '../component/seperator.dart';
+import '../component/svg.dart';
 import '../model/cart.dart';
 import '../model/coffee.dart';
 import '../model/order.dart';
@@ -22,7 +22,7 @@ class _DetailState extends State<Detail> {
   String shot = "Single";
   String temperature = "Hot";
   String size = "Medium";
-  String ice = "No Ice";
+  String ice = "Normal Ice";
 
   @override
   Widget build(BuildContext context) {
@@ -262,7 +262,7 @@ class _DetailState extends State<Detail> {
                               ?.fontSize),
                     ),
                     Text(
-                        "\$${(quantity * widget.coffee.price).toStringAsFixed(2)}",
+                        "\$${(quantity * widget.coffee.price[size]!).toStringAsFixed(2)}",
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.onSurface,
                             fontWeight: FontWeight.bold,
@@ -289,7 +289,7 @@ class _DetailState extends State<Detail> {
                             temperature: temperature,
                             size: size,
                             ice: ice,
-                            price: quantity * widget.coffee.price);
+                            price: quantity * widget.coffee.price[size]!);
                         Provider.of<CartModel>(context, listen: false)
                             .addItem(order);
                         Navigator.push(
@@ -348,12 +348,6 @@ class _DetailState extends State<Detail> {
         setState(() {
           if (label == "Hot" || label == "Iced") {
             temperature = label;
-            if (temperature == "Hot") {
-              ice = "No Ice";
-            }
-            else {
-              ice = "Normal Ice";
-            }
           } else if (label == "Small" ||
               label == "Medium" ||
               label == "Large") {
@@ -365,17 +359,12 @@ class _DetailState extends State<Detail> {
           }
         });
       },
-      child: SvgPicture.asset(
-        iconPath,
+      child: SVG(iconPath, 
         height: width,
         width: width,
-        colorFilter: ColorFilter.mode(
-          currentSelection == label
+        color: currentSelection == label
               ? Theme.of(context).colorScheme.onSurface
-              : Theme.of(context).colorScheme.onSecondary,
-          BlendMode.srcIn, // Apply the color filter to the icon
-        ),
-      ),
+              : Theme.of(context).colorScheme.onSecondary),
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../model/user.dart';
 import '../screen/cart.dart';
+import 'svg.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({
@@ -37,11 +37,7 @@ class HomeHeader extends StatelessWidget {
         Row(
           children: [
             IconButton(
-              icon: SvgPicture.asset(
-                "assets/svgs/Cart.svg",
-                height: 24,
-                width: 24,
-              ),
+              icon: const SVG("assets/svgs/Cart.svg", size: 24),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -51,11 +47,7 @@ class HomeHeader extends StatelessWidget {
             ),
             const SizedBox(width: 8),
             IconButton(
-              icon: SvgPicture.asset(
-                "assets/svgs/Profile.svg",
-                height: 24,
-                width: 24,
-              ),
+              icon: const SVG("assets/svgs/Profile.svg", size: 24),
               onPressed: () {
                 Navigator.push(
                   context,

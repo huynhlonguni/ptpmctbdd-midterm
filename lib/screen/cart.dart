@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_swipe_action_cell/flutter_swipe_action_cell.dart';
-import 'package:midterm_flutter/component/order_card.dart';
-import '../component/custom_app_bar.dart';
 import 'package:provider/provider.dart';
+import '../component/order_card.dart';
+import '../component/svg.dart';
+import '../component/custom_app_bar.dart';
+import '../screen/order_success.dart';
 import '../model/cart.dart';
 
 class Cart extends StatelessWidget {
@@ -46,17 +47,12 @@ class Cart extends StatelessWidget {
                                     height: double.infinity,
                                     child: Padding(
                                       padding: const EdgeInsets.all(12.0),
-                                      child: SvgPicture.asset(
-                                        fit: BoxFit.none,
-                                        "assets/svgs/Delete.svg",
-                                        width: 24,
-                                        height: 24,
-                                        colorFilter: ColorFilter.mode(
-                                            Theme.of(context)
-                                                .colorScheme
-                                                .onError,
-                                            BlendMode.srcIn),
-                                      ),
+                                      child: SVG("assets/svgs/Delete.svg",
+                                          fit: BoxFit.none,
+                                          size: 24,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onError),
                                     ),
                                   ),
 
@@ -107,7 +103,13 @@ class Cart extends StatelessWidget {
                         TextButton(
                             style: TextButton.styleFrom(
                                 padding: const EdgeInsets.all(0)),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const OrderSuccess()),
+                              );
+                            },
                             child: Container(
                               padding: const EdgeInsets.symmetric(
                                   vertical: 14, horizontal: 28),
@@ -117,14 +119,10 @@ class Cart extends StatelessWidget {
                               ),
                               child: Row(
                                 children: [
-                                  SvgPicture.asset(
-                                    "assets/svgs/Cart.svg",
-                                    width: 24,
-                                    height: 24,
-                                    colorFilter: ColorFilter.mode(
-                                        Theme.of(context).colorScheme.onPrimary,
-                                        BlendMode.srcIn),
-                                  ),
+                                  SVG("assets/svgs/Cart.svg",
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary),
                                   const SizedBox(width: 12),
                                   Text(
                                     "Checkout",

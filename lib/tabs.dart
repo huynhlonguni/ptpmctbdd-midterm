@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'component/svg.dart';
 import 'component/tab_button.dart';
 import 'package:provider/provider.dart';
 import 'state/tab_manager.dart';
@@ -46,11 +46,7 @@ class Tabs extends StatelessWidget {
                               Theme.of(context).colorScheme.onSecondary,
                           isActive: tabManager.currentTabIndex == 0,
                           onPressed: () => tabManager.setTabIndex(0),
-                          child: SvgPicture.asset(
-                            "assets/svgs/House.svg",
-                            width: 24,
-                            height: 24,
-                          ),
+                          child: const SVG("assets/svgs/House.svg", size: 24),
                         ),
                       ),
                       Expanded(
@@ -60,11 +56,7 @@ class Tabs extends StatelessWidget {
                               Theme.of(context).colorScheme.onSecondary,
                           isActive: tabManager.currentTabIndex == 1,
                           onPressed: () => tabManager.setTabIndex(1),
-                          child: SvgPicture.asset(
-                            "assets/svgs/Gift.svg",
-                            width: 24,
-                            height: 24,
-                          ),
+                          child: const SVG("assets/svgs/Gift.svg", size: 24),
                         ),
                       ),
                       Expanded(
@@ -74,11 +66,7 @@ class Tabs extends StatelessWidget {
                               Theme.of(context).colorScheme.onSecondary,
                           isActive: tabManager.currentTabIndex == 2,
                           onPressed: () => tabManager.setTabIndex(2),
-                          child: SvgPicture.asset(
-                            "assets/svgs/Receipt.svg",
-                            width: 24,
-                            height: 24,
-                          ),
+                          child: const SVG("assets/svgs/Receipt.svg", size: 24),
                         ),
                       ),
                     ],

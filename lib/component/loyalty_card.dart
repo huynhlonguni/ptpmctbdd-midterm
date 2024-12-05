@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../model/user.dart';
+import 'svg.dart';
 
 class LoyaltyCard extends StatelessWidget {
   const LoyaltyCard({
@@ -46,17 +46,9 @@ class LoyaltyCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: List.generate(user.loyaltyTotal, (index) {
                 if (index < user.loyaltyProgress) {
-                  return SvgPicture.asset(
-                    "assets/svgs/CoffeeCup.svg",
-                    width: 30,
-                    height: 30,
-                  );
+                  return const SVG("assets/svgs/CoffeeCup.svg", size: 30);
                 } else {
-                  return SvgPicture.asset(
-                    "assets/svgs/CoffeeCupGray.svg",
-                    width: 30,
-                    height: 30,
-                  );
+                  return const SVG("assets/svgs/CoffeeCupGray.svg", size: 30);
                 }
               }),
             ),

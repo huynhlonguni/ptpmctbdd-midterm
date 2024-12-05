@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:midterm_flutter/screen/order_success.dart';
 import 'package:provider/provider.dart';
 import 'tabs.dart';
 import 'model/user.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const Tabs(
         screens: [
+          OrderSuccess(),
           Home(),
           Home(),
           Home(),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../screen/cart.dart';
+import 'svg.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
@@ -30,11 +30,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             // Left side (Leading icon)
             if (!disableBackButton && Navigator.canPop(context)) 
               IconButton(
-                icon: SvgPicture.asset(
-                  "assets/svgs/ArrowLeft.svg",
-                  height: 24,
-                  width: 24,
-                ),
+                icon: const SVG("assets/svgs/ArrowLeft.svg", size: 24),
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -58,11 +54,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             // Right side (Action icon)
             if (!disableCartButton)
               IconButton(
-                icon: SvgPicture.asset(
-                  "assets/svgs/Cart.svg",
-                  height: 24,
-                  width: 24,
-                ),
+                icon: const SVG("assets/svgs/Cart.svg", size: 24),
                 onPressed: () {
                   Navigator.push(
                     context,
