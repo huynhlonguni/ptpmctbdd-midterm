@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_flutter/screen/order_success.dart';
 import 'package:provider/provider.dart';
+import 'screen/my_order.dart';
 import 'tabs.dart';
 import 'model/user.dart';
 import 'model/coffee.dart';
+import 'model/history.dart';
 import 'model/cart.dart';
 import 'screen/home.dart';
 import 'state/tab_manager.dart';
@@ -16,6 +17,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => CoffeeModel()),
         ChangeNotifierProvider(create: (_) => TabManager()),
         ChangeNotifierProvider(create: (_) => CartModel()),
+        ChangeNotifierProvider(create: (_) => HistoryModel()),
       ],
       child: const MyApp(),
     ),
@@ -36,9 +38,12 @@ class MyApp extends StatelessWidget {
           onPrimary: Colors.white, // Primary text color
           secondary: Color(0xFFF7F8FB), // Secondary color
           onSecondary: Color(0xFFD8D8D8), // Secondary text color
+          tertiary: Color(0xFFE2FFE8),
+          onTertiary: Color(0xFF32B751),
           error: Color(0xFFFFE5E5), // Warning color
           onError: Color(0xFFFF3030), // Default on error color
           surface: Colors.white, // Surface color
+          surfaceDim: Color(0xFF98A4AC),
           onSurface: Color(0xFF001833), // On surface text color
           outline: Color(0xFFEFEFEF),
           brightness: Brightness.light, // Brightness of the theme
@@ -52,9 +57,8 @@ class MyApp extends StatelessWidget {
       ),
       home: const Tabs(
         screens: [
-          OrderSuccess(),
           Home(),
-          Home(),
+          MyOrder(),
           Home(),
         ],
       ),

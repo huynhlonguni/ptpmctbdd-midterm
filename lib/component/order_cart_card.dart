@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '../model/order.dart';
 
-class OrderCard extends StatelessWidget {
+class OrderCartCard extends StatelessWidget {
   final Order order;
 
-  const OrderCard({super.key, required this.order});
+  const OrderCartCard({super.key, required this.order});
 
   @override
   Widget build(BuildContext context) {

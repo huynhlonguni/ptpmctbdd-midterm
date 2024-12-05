@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:midterm_flutter/state/tab_manager.dart';
+import 'package:provider/provider.dart';
 
 import '../component/svg.dart';
 
@@ -37,7 +39,11 @@ class OrderSuccess extends StatelessWidget {
             const SizedBox(height: 80),
             TextButton(
                 style: TextButton.styleFrom(padding: const EdgeInsets.all(0)),
-                onPressed: () {},
+                onPressed: () {
+                  final TabManager tabManager = Provider.of<TabManager>(context, listen: false);
+                  tabManager.setTabIndex(1);
+                  Navigator.popUntil(context, (route) => route.isFirst);
+                },
                 child: Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(vertical: 12),

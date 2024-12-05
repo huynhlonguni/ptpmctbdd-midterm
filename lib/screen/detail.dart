@@ -6,6 +6,7 @@ import '../component/svg.dart';
 import '../model/cart.dart';
 import '../model/coffee.dart';
 import '../model/order.dart';
+import '../model/user.dart';
 import '../screen/cart.dart';
 
 class Detail extends StatefulWidget {
@@ -26,6 +27,7 @@ class _DetailState extends State<Detail> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserModel>(context);
     return Scaffold(
       appBar: const CustomAppBar(title: "Details"),
       body: Container(
@@ -289,7 +291,10 @@ class _DetailState extends State<Detail> {
                             temperature: temperature,
                             size: size,
                             ice: ice,
-                            price: quantity * widget.coffee.price[size]!);
+                            price: quantity * widget.coffee.price[size]!,
+                            time: DateTime.now(),
+                            address: user.address,
+                            isCompleted: false);
                         Provider.of<CartModel>(context, listen: false)
                             .addItem(order);
                         Navigator.push(

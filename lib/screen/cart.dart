@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_action_cell/flutter_swipe_action_cell.dart';
 import 'package:provider/provider.dart';
-import '../component/order_card.dart';
+import '../component/order_cart_card.dart';
 import '../component/svg.dart';
 import '../component/custom_app_bar.dart';
+import '../model/history.dart';
 import '../screen/order_success.dart';
 import '../model/cart.dart';
 
@@ -13,14 +14,22 @@ class Cart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<CartModel>(context);
+    final history = Provider.of<HistoryModel>(context);
     final double total = cart.items.fold(0, (sum, item) => sum + item.price);
     return Scaffold(
-        appBar: const CustomAppBar(title: "Cart", disableCartButton: true),
+        appBar: const CustomAppBar(disableCartButton: true),
         body: Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text("My Cart",
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                      fontSize:
+                          Theme.of(context).textTheme.headlineSmall?.fontSize)),
+              const SizedBox(height: 24),
               Expanded(
                 child: Builder(builder: (context) {
                   if (cart.items.isEmpty) {
@@ -63,7 +72,7 @@ class Cart extends StatelessWidget {
                                     cart.removeItem(index);
                                   }),
                             ],
-                            child: OrderCard(order: order));
+                            child: OrderCartCard(order: order));
                       },
                     );
                   }
@@ -104,6 +113,10 @@ class Cart extends StatelessWidget {
                             style: TextButton.styleFrom(
                                 padding: const EdgeInsets.all(0)),
                             onPressed: () {
+                              for (var item in cart.items) {
+                                history.addItem(item);
+                              }
+                              cart.removeAll();
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

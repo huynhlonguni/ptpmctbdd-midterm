@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'order.dart';
 
-class CartModel extends ChangeNotifier {
+class HistoryModel extends ChangeNotifier {
   final List<Order> _items = [];
 
   List<Order> get items => _items;
@@ -16,8 +16,9 @@ class CartModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeAll() {
-    _items.clear();
+  void setItemStatus(int index, bool isCompleted) {
+    Order item = _items[index];
+    items[index] = item.copyWith(isCompleted: isCompleted);
     notifyListeners();
   }
 }
